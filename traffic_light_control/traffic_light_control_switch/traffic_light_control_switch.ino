@@ -3,18 +3,30 @@ int red = 13;
 int yellow = 12;
 int green = 11;
 
+int button = 2; // switch is on pin 2
+int buttonValue = 0; // switch defaults to 0 or LOW
+
 // put your setup code here, to run once:
 void setup() {
   //set up the pin output 
   pinMode(red,OUTPUT);
   pinMode(yellow,OUTPUT);
   pinMode(green,OUTPUT);
+
+  //setup the initial state
+  pinMode(switch,INPUT);
+  digitalWrite(green,HIGH);
 }
 
 // put your main code here, to run repeatedly:
 void loop() {
-  changeLights();
-  delay(15000);
+  // read the value of the switch
+  switchValue = digitalRead(button);
+  // if the switch is HIGH, ie. pushed down - change the lights!
+  if (buttonValue == HIGH){
+    changeLights();
+    delay(15000); // wait for 15 seconds
+  }
 }
 
 void changeLights(){
